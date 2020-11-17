@@ -76,9 +76,9 @@ $(function() {
             equation = equation.replace(match[0], rolled_match_to_sum(match));
             equation_html = equation_html.replace(match[0], rolled_match_to_html(match));
         }
-        let result = eval_equation(equation);
+        //let result = eval_equation(equation);
 
-        equation_html += " = " + result.toString();
+        //equation_html += " = " + result.toString();
 
         return equation_html;
     }

@@ -22,6 +22,7 @@
     "electron": "^10.1.5"
   },
   "dependencies": {
-    "jquery": "^3.5.1"
+    "jquery": "^3.5.1",
+    "markdown-it": "^12.0.2"
   }
 }

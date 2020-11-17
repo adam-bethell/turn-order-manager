@@ -109,7 +109,11 @@ table h2 {
 
 #notes textarea {
     width: 100%;
-    height: 100%;
+    height: 80%;
     resize: none;
     box-sizing: border-box;
+}
+
+#notes_markdown table {
+    border: 5px dotted red;
 }
