@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title>Session 0</title>
+        <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+        <link rel="stylesheet" href="tomstyle.css">
+        <script>window.$ = window.jQuery = require('jquery');</script>
+        <script src="tom.js"></script>
+    </head>
+    <body>
+        <div class="top_content">
+            <h1 class="heading">Session 0</h1>
+        </div>
+        <div class="main_content">
+            <nav id="tabbed_labels" class="standard_border">
+                <a href=#>Notes</a>
+                <a href=#>NPCs</a>
+            </nav>
+            <div id="tabbed_content_container" class="standard_border">
+                <div id="notes" class="tabbed_content active">
+                    <textarea></textarea>
+                </div>
+            </div>
+            <div id="trackers-container">
+                <div>
+                    <table id="initiative-tracker" class="standard_border">
+                        <thead>
+                            <tr>
+                                <th><h2>Initiative</h2></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <th>Name</th>
+                                <th>Initiative</th>
+                                <th>Dexterity</th>
+                                <th><input id="delete_all_initiative_records" type="button" value="Delete All"></input></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td><input class="name-input" type="text" placeholder="Name"></input></td>
+                                <td><input class="initiative-input" type="number" placeholder="0"></input></td>
+                                <td><input class="dexterity-input" type="number" placeholder="0"></input></td>
+                                <td><input id="create_initiative_record" type="button" value="Create"></input></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div>
+                    <div id="timer" class="standard_border">
+                        <h2 id="clock">00:00:00.00</h2>
+                        <div>
+                            <input id="stop_watch_start" type="button" value="Start"></input>
+                            <input id="stop_watch_pause" type="button" value="Pause"></input>
+                            <input id="stop_watch_stop" type="button" value="Stop"></input>
+                        </div>
+                        <input id="stop_watch_next_player" type="button" value="Next Player"></input>
+                    </div>
+                    <div id="history-container">
+                        <table id="history" class="standard_border">
+                            <thead>
+                                <tr>
+                                    <th><h2>History</h2></th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Time</th>
+                                    <th>Turn</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

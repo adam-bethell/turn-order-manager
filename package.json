@@ -1,0 +1,27 @@
+{
+  "name": "turn-order-manager",
+  "version": "0.1.0",
+  "description": "RPG Tools",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adam-bethell/turn-order-manager.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adam-bethell/turn-order-manager/issues"
+  },
+  "homepage": "https://github.com/adam-bethell/turn-order-manager#readme",
+  "devDependencies": {
+    "electron": "^10.1.5"
+  },
+  "dependencies": {
+    "jquery": "^3.5.1"
+  }
+}
