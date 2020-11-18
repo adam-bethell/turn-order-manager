@@ -24,7 +24,7 @@
             <div id="tabbed_content_container" class="standard_border">
                 <div id="notes" class="tabbed_content active">
                     <nav>
-                        <input id="notes_render_text" type="button" value="Text"></input>
+                        <input id="notes_render_text" type="button" value="Edit"></input>
                         <input id="notes_render_markdown" type="button" value="MD"></input>
                     </nav>
                     <textarea id="notes_text"></textarea>
@@ -90,10 +90,12 @@
                 </div>
             </div>
         </div>
-        <div>
-            <input id="dice_input" type="text"></input>
-            <input id="dice_submit" type="button" value="Roll!"></input>
+        <footer>
+            <div id="dice_roller">
+                <input id="dice_input" type="text"></input>
+                <input id="dice_submit" type="button" value="Roll!"></input>
+            </div>
             <p id="dice_output"></p>
-        </div>
+        </footer>
     </body>
 </html>

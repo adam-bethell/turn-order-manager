@@ -1,7 +1,6 @@
 $(function() {
     $("#dice_submit").on("click", function() {
         let equation = $("#dice_input").val().toUpperCase();
-        console.log(equation);
         if (!dice_equation_is_valid(equation)) {
             $("#dice_output").empty();
             $("#dice_output").append("invalid input");
@@ -60,7 +59,6 @@ $(function() {
             let match = dice_match.value;
             match["num_dice"] = match[1];
             match["mod"] = match[2];
-            console.log(match["mod"]);
             match["max"] = match[3];
             let rolls = roll_dice(match);
             match["rolls"] = rolls;
@@ -76,9 +74,9 @@ $(function() {
             equation = equation.replace(match[0], rolled_match_to_sum(match));
             equation_html = equation_html.replace(match[0], rolled_match_to_html(match));
         }
-        //let result = eval_equation(equation);
+        let result = eval_equation(equation);
 
-        //equation_html += " = " + result.toString();
+        equation_html += " = " + result.toString();
 
         return equation_html;
     }
@@ -100,14 +98,14 @@ $(function() {
     }
 
     function eval_equation(equation) {
-        console.log(equation);
-        equation = equation.replace(/[^0-9()+-]/g, "");
-        console.log(equation);
-        let theInstructions = "return " + equation;
-        let F = new Function (theInstructions);
-        let result = F();
+        equation = equation.replace(/[^0-9+-]/g, "");
+        let sum_list = equation.split(/(?=[+-])/g);
+        let sum = 0;
+        for (let i = 0; i < sum_list.length; i++) {
+            sum += parseInt(sum_list[i]);
+        }
 
-        return result;
+        return sum;
     }
 
     function rolled_match_to_sum(match) {
@@ -116,14 +114,10 @@ $(function() {
 
         for (let i = 0; i < match["rolls"].length; i++) {
             let roll = match["rolls"][i];
-            console.log(roll);
             if (match["mod"] != "") {
-                console.log("this is a mod roll");
                 i++;
                 let mod_roll = match["rolls"][i];
-                console.log(mod_roll);
                 if (match["mod"] == "A" && parseInt(mod_roll) > parseInt(roll)) {
-                    console.log("A: " + mod_roll + " > " + roll);
                     roll = mod_roll;
                 }
                 else if (match["mod"] == "D" && parseInt(mod_roll) < parseInt(roll)) {
@@ -132,7 +126,7 @@ $(function() {
             }
             out.push(roll.toString());
         }
-        return "(" + out.join(" + ") + ")";
+        return " (" + out.join(" + ") + ") ";
     }
 
     function rolled_match_to_html(match) {
