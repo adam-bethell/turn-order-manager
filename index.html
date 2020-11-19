@@ -5,25 +5,28 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <title>Session 0</title>
         <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
-        <link rel="stylesheet" href="tomstyle.css">
+        <link rel="stylesheet" href="tom.css">
         <link rel="stylesheet" href="dice.css">
         <script>window.$ = window.jQuery = require('jquery');</script>
-        <script src="tom.js"></script>
         <script src="dice.js"></script>
+        <script src="tom.js"></script>
         <script src="notes.js"></script>
     </head>
     <body>
-        <div class="top_content">
-            <h1 class="heading">Session 0</h1>
-        </div>
-        <div class="main_content">
-            <nav id="tabbed_labels" class="standard_border">
+        <header>
+            <h1>Session 0</h1>
+            <img src="logo.png"><img>
+        </header>
+        <section id="tabbed_content_container">
+            <nav id="tabbed_content_nav" class="standard_border">
                 <a href=#>Notes</a>
                 <a href=#>NPCs</a>
             </nav>
-            <div id="tabbed_content_container" class="standard_border">
+            <div id="tabbed_content_area" class="standard_border">
                 <div id="notes" class="tabbed_content active">
                     <nav>
+                        <input id="notes_file_new" type="button" value="..."></input>
+                        <select id="notes_filename_select"></select>
                         <input id="notes_render_text" type="button" value="Edit"></input>
                         <input id="notes_render_markdown" type="button" value="MD"></input>
                     </nav>
@@ -31,65 +34,65 @@
                     <div id="notes_markdown"></div>
                 </div>
             </div>
-            <div id="trackers-container">
-                <div>
-                    <table id="initiative-tracker" class="standard_border">
+        </section>
+        <div id="split_vertical"></div>
+        <section id="trackers_container">
+            <table id="initiative_tracker" class="standard_border">
+                <thead>
+                    <tr>
+                        <th><h2>Initiative</h2></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <th>Name</th>
+                        <th>Initiative</th>
+                        <th>Dexterity</th>
+                        <th><input id="delete_all_initiative_records" type="button" value="Delete All"></input></th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td><input class="name-input" type="text" placeholder="Name"></input></td>
+                        <td><input class="initiative-input" type="number" placeholder="0"></input></td>
+                        <td><input class="dexterity-input" type="number" placeholder="0"></input></td>
+                        <td><input id="create_initiative_record" type="button" value="Create"></input></td>
+                    </tr>
+                </tfoot>
+            </table>
+            <div>
+                <div id="timer" class="standard_border">
+                    <h2 id="clock">00:00:00.00</h2>
+                    <div>
+                        <input id="stop_watch_start" type="button" value="Start"></input>
+                        <input id="stop_watch_pause" type="button" value="Pause"></input>
+                        <input id="stop_watch_stop" type="button" value="Stop"></input>
+                    </div>
+                    <input id="stop_watch_next_player" type="button" value="Next Player"></input>
+                </div>
+                <div id="history-container">
+                    <table id="history" class="standard_border">
                         <thead>
                             <tr>
-                                <th><h2>Initiative</h2></th>
+                                <th><h2>History</h2></th>
                                 <th></th>
                                 <th></th>
                             </tr>
                             <tr>
                                 <th>Name</th>
-                                <th>Initiative</th>
-                                <th>Dexterity</th>
-                                <th><input id="delete_all_initiative_records" type="button" value="Delete All"></input></th>
+                                <th>Time</th>
+                                <th>Turn</th>
                             </tr>
                         </thead>
                         <tbody>
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <td><input class="name-input" type="text" placeholder="Name"></input></td>
-                                <td><input class="initiative-input" type="number" placeholder="0"></input></td>
-                                <td><input class="dexterity-input" type="number" placeholder="0"></input></td>
-                                <td><input id="create_initiative_record" type="button" value="Create"></input></td>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
-                <div>
-                    <div id="timer" class="standard_border">
-                        <h2 id="clock">00:00:00.00</h2>
-                        <div>
-                            <input id="stop_watch_start" type="button" value="Start"></input>
-                            <input id="stop_watch_pause" type="button" value="Pause"></input>
-                            <input id="stop_watch_stop" type="button" value="Stop"></input>
-                        </div>
-                        <input id="stop_watch_next_player" type="button" value="Next Player"></input>
-                    </div>
-                    <div id="history-container">
-                        <table id="history" class="standard_border">
-                            <thead>
-                                <tr>
-                                    <th><h2>History</h2></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Time</th>
-                                    <th>Turn</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
             </div>
-        </div>
+        </section>
+        <div id="split_horizontal"></div>
         <footer>
             <div id="dice_roller">
                 <input id="dice_input" type="text"></input>

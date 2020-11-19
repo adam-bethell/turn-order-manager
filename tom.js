@@ -1,3 +1,20 @@
+let Split = require('split-grid');
+$(function() {
+    Split({
+        columnGutters: [{
+          track: 1,
+          element: document.querySelector('#split_vertical'),
+        }],
+        rowGutters: [{
+          track: 2,
+          element: document.querySelector('#split_horizontal'),
+        }],
+        rowMinSizes: { 1: 300, 3: 45 },
+        columnMinSize: 230,
+    });
+});
+
+
 class InitiativeRecords {
     constructor() {
         this.records = [];
@@ -127,7 +144,7 @@ $(function() {
     //=======================================
     // Initiative Tracker
     //=======================================
-    let $initiative_records = $("#initiative-tracker tbody");
+    let $initiative_records = $("#initiative_tracker tbody");
     let initiative_records = new InitiativeRecords();
     function show_initiative_records() {
         $initiative_records.empty();
@@ -174,9 +191,10 @@ $(function() {
     }
 
     $("#create_initiative_record").on('click', function() {
-        let name = $("#initiative-tracker .name-input").val();
-        let init = $("#initiative-tracker .initiative-input").val();
-        let dex = $("#initiative-tracker .dexterity-input").val();
+        console.log("create!");
+        let name = $("#initiative_tracker .name-input").val();
+        let init = $("#initiative_tracker .initiative-input").val();
+        let dex = $("#initiative_tracker .dexterity-input").val();
         if (name == "") {
             return
         }
@@ -187,14 +205,15 @@ $(function() {
             dex = 0;
         }
 
+        console.log()
         initiative_records.add_initiative_record(name, init, dex);
         show_initiative_records();
 
-        $("#initiative-tracker .name-input").val("");
-        $("#initiative-tracker .initiative-input").val("");
-        $("#initiative-tracker .dexterity-input").val("");
+        $("#initiative_tracker .name-input").val("");
+        $("#initiative_tracker .initiative-input").val("");
+        $("#initiative_tracker .dexterity-input").val("");
 
-        $("#initiative-tracker .name-input").trigger('focus');
+        $("#initiative_tracker .name-input").trigger('focus');
     });
 
     $("#delete_all_initiative_records").on('click', function() {
@@ -202,21 +221,21 @@ $(function() {
         show_initiative_records();
     });
 
-    $("#initiative-tracker").on("click",".disable_initiative_record", function() {
+    $("#initiative_tracker").on("click",".disable_initiative_record", function() {
         let id = $(this).closest("tr").attr("data-record_id");
 
         initiative_records.disable_initiative_record(id);
         show_initiative_records();
     });
 
-    $("#initiative-tracker").on("click",".enable_initiative_record", function() {
+    $("#initiative_tracker").on("click",".enable_initiative_record", function() {
         let id = $(this).closest("tr").attr("data-record_id");
 
         initiative_records.enable_initiative_record(id);
         show_initiative_records();
     });
 
-    $("#initiative-tracker").on("click",".delete_initiative_record", function() {
+    $("#initiative_tracker").on("click",".delete_initiative_record", function() {
         let id = $(this).closest("tr").attr("data-record_id");
 
         initiative_records.remove_initiative_record(id);
