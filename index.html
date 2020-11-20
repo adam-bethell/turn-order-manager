@@ -23,15 +23,26 @@
                 <a href=#>NPCs</a>
             </nav>
             <div id="tabbed_content_area" class="standard_border">
-                <div id="notes" class="tabbed_content active">
-                    <nav>
-                        <input id="notes_file_new" type="button" value="..."></input>
-                        <select id="notes_filename_select"></select>
-                        <input id="notes_render_text" type="button" value="Edit"></input>
-                        <input id="notes_render_markdown" type="button" value="MD"></input>
-                    </nav>
-                    <textarea id="notes_text"></textarea>
-                    <div id="notes_markdown"></div>
+                <div id="notes">
+                    <table id="notes_browser">
+                        <thead>
+                            <tr>
+                                <th>Notes</th>
+                                <th><input id="notes_new" type="button" value="+"></input></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    <div id="notes_editor">
+                        <nav>
+                            <span id="notes_current_title"></span>
+                            <input id="notes_render_text" type="button" value="Edit"></input>
+                            <input id="notes_render_markdown" type="button" value="MD"></input>
+                        </nav>
+                        <textarea id="notes_text"></textarea>
+                        <div id="notes_markdown"></div>
+                    </div>
                 </div>
             </div>
         </section>

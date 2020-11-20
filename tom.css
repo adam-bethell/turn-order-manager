@@ -55,10 +55,6 @@ header img {
 
 section.main_content {
     margin: 0;
-    /*display: flex;*/
-    /*flex-flow: wrap-reverse;*/
-    /*align-items: stretch;*/
-    /*height: calc(100vh - 62px - 45px);*/
     overflow: scroll;
 }
 
@@ -139,15 +135,42 @@ table h2 {
 #notes {
     width: 100%;
     height: 100%;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "notes_browser notes_editor";
 }
 
-#notes nav {
+#notes_browser {
+    grid-area: notes_browser;
+    border-spacing: 0;
+}
+
+#notes_browser tbody tr:nth-child(odd) {
+    background-color: #e0e5c1;
+}
+
+#notes_browser tbody tr:hover {
+    background-color: #deb887;
+    cursor: context-menu;
+}
+
+#notes_browser tbody tr.highlight {
+    background-color: #deb887;
+}
+
+#notes_editor {
+    grid-area: notes_editor;
+    padding-left: 10px;
+}
+
+#notes_editor nav {
     display: flex;
     justify-content: flex-end;
     height: 20px;
 }
 
-#notes textarea {
+#notes_text {
     width: 100%;
     resize: none;
     box-sizing: border-box;
@@ -163,10 +186,7 @@ table h2 {
     padding: 5px;
     margin: 2px;
 }
+
 #notes_markdown table tbody tr.highlight {
     background-color: #deb887;
-}
-
-#notes_filename_select {
-    flex-grow: 1;
 }
