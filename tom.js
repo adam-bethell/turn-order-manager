@@ -1,4 +1,9 @@
-let Split = require('split-grid');
+ipcRenderer.on('open_file', function(event, json) {
+    let project_name = json["project_name"];
+    $("#project_name").text(project_name);
+    $("head title").text(project_name);
+});
+
 $(function() {
     Split({
         columnGutters: [{
@@ -14,7 +19,6 @@ $(function() {
     });
 });
 
-
 class InitiativeRecords {
     constructor() {
         this.records = [];
@@ -22,6 +26,7 @@ class InitiativeRecords {
     }
 
     _order_initiative_records() {
+        console.log("_order_initiative_records()");
         let ordered_records = [];
         let lowest_initiative = 99999;
         let lowest_dexterity = 99999;
@@ -30,13 +35,18 @@ class InitiativeRecords {
             for (let i = 0; i < this.records.length; i++) {
                 let initiative = this.records[i].init;
                 let dexterity = this.records[i].dex;
+                console.log(i);
+                console.log(initiative);
+                console.log(dexterity);
                 if (initiative < lowest_initiative ||
                     (initiative == lowest_initiative && dexterity < lowest_dexterity)) {
                     lowest_initiative = initiative;
                     lowest_dexterity = dexterity;
                     lowest_index = i;
+                    console.log("lowest!")
                 }
             }
+            console.log(lowest_index);
             ordered_records.unshift(this.records.splice(lowest_index, 1)[0]);
             lowest_initiative = 99999;
             lowest_dexterity = 99999;
@@ -68,8 +78,8 @@ class InitiativeRecords {
             "enabled": true,
             "selected": false,
             "name": name,
-            "init": init,
-            "dex": dex
+            "init": parseInt(init),
+            "dex": parseInt(dex),
         });
 
         this._order_initiative_records();
