@@ -1,5 +1,6 @@
 # Turn Order Manager
-DM Tools
+DM Tools  
+[The latest packaged build is available on my website.](http://www.adambethell.com/tom)
 
 ### Features
 - Initiative tracker
