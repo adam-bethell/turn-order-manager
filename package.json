@@ -1,29 +1,68 @@
 {
-  "name": "turn-order-manager",
+  "name": "T.O.M",
   "version": "0.1.0",
   "description": "RPG Tools",
   "main": "main.js",
+  "authors": "Adam Bethell",
   "scripts": {
-    "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "electron-forge start",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/adam-bethell/turn-order-manager.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Adam Bethell",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/adam-bethell/turn-order-manager/issues"
   },
   "homepage": "https://github.com/adam-bethell/turn-order-manager#readme",
   "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.54",
+    "@electron-forge/maker-deb": "^6.0.0-beta.54",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.54",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
+    "@electron-forge/maker-zip": "^6.0.0-beta.54",
     "electron": "^10.1.5"
   },
   "dependencies": {
+    "electron-squirrel-startup": "^1.0.0",
     "jquery": "^3.5.1",
     "markdown-it": "^12.0.2",
     "split-grid": "^1.0.9"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "asar": true,
+        "icon": "logo_initial.ico"
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "turn_order_manager"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
   }
 }
