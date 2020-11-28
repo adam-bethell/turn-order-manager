@@ -142,8 +142,7 @@ function open_file(menuItem, browserWindow, event) {
                 fs.readFile(current_file_path, null, function(err, data) {
                     let json = JSON.parse(data);
                     current_file_json = json
-                    console.log(current_file_json);
-                    win.webContents.send("open_file", current_file_json);
+                    win.webContents.send("open_json", current_file_json);
                 });
             }
         }).catch(err => {
@@ -159,7 +158,7 @@ function save_file(menuItem, browserWindow, event) {
         save_file_as(menuItem, browserWindow, event);
     }
     else {
-        win.webContents.send("save_file", current_file_json);
+        win.webContents.send("get_json", current_file_json);
         ipcMain.on("json_updated", function(event, json) {
             let data = JSON.stringify(json);
             fs.writeFile(current_file_path, data, function() {
@@ -173,13 +172,13 @@ function save_file_as (menuItem, browserWindow, event) {
     dialog.showSaveDialog(win, {
         filters: [{name: "TOM Project (*.tomproj)", extensions: ["tomproj"]}], 
     }).then(result => {
-        console.log(result.canceled)
-        console.log(result.filePath)
         if (!result.canceled) {
+            console.log(result.filePath)
             current_file_path = result.filePath;
-            win.webContents.send("save_file", current_file_json);
+            win.webContents.send("get_json", current_file_json);
             ipcMain.on("json_updated", function(event, json) {
                 let data = JSON.stringify(json);
+                console.log(data);
                 fs.writeFile(current_file_path, data, function() {
                     console.log("File written");
                 });
@@ -201,7 +200,7 @@ function new_file (menuItem, browserWindow, event) {
         if (result.response == 0) {
             current_file_path = null;
             current_file_json = {};
-            win.webContents.send("open_file", current_file_json);
+            win.webContents.send("open_json", current_file_json);
         }
     }).catch(err => {
         console.log(err)

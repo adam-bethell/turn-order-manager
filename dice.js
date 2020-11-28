@@ -125,8 +125,8 @@ function dice_equation_parse(equation) {
     return parsed_equation;
 }
 
-$(function() {
-    $("#dice_submit").on("click", function() {
+//$(function() {
+    $("#dice_submit").on("click", () => {
         let equation = $("#dice_input").val();
         if (!dice_equation_is_valid(equation)) {
             $("#dice_output").empty();
@@ -200,4 +200,4 @@ $(function() {
         $equation.append(" = " + parsed_equation["result"].toString());
         return $equation;
     }
-});
+//});

@@ -1,4 +1,4 @@
-$(function() {
+//$(() => {
     const notes_menu_template = [
         {
             label: "Rename",
@@ -96,12 +96,9 @@ $(function() {
         $("#notes_markdown").append(render_tom_markdown(text));
     }
 
-    ipcRenderer.on('open_file', function(event, json) {
-        if (!("notes" in json)) {
-            json["notes"] = [];
-        }
-
-        notes_json = json["notes"];
+    function set_notes_json(json) {
+        notes_json = json;
+        console.log(notes_json)
         if (notes_json.length == 0) {
             notes_json = [{
                 "title": "New Note",
@@ -111,13 +108,13 @@ $(function() {
         }
 
         open_note(notes_json[0]["title"]);
-    });
+        populate_notes_table();
+    }
 
-    ipcRenderer.on('save_file', function(event, json) {
+    function get_notes_json() {
         save_current_note_editor_to_json();
-        json["notes"] = notes_json;
-        event.sender.send("json_updated", json);
-    });
+        return notes_json;
+    }
 
     function show_notes_editor() {
         $("#notes_render_markdown").prop("disabled", false);
@@ -137,13 +134,9 @@ $(function() {
         $("#notes_markdown").append(render_tom_markdown(text));
     }
 
-    $("#notes_render_markdown").on("click", function() {
-        show_notes_markdown();
-    });
+    $("#notes_render_markdown").on("click", show_notes_markdown);
 
-    $("#notes_render_text").on("click", function() {
-        show_notes_editor();
-    });
+    $("#notes_render_text").on("click", show_notes_editor);
 
     $("#notes_markdown").on("click", ".notes_lookup_table_roll", function() {
         // Roll dice against a lookup table
@@ -214,7 +207,7 @@ $(function() {
         });
     }
 
-    $("#notes_new").on("click", function() {
+    $("#notes_new").on("click", () => {
         $("#notes_new").hide();
         let $input = $("<input>").addClass("new_note_input");
         let $new_note_input = $("<tr>").append($("<td>").append($input)).append($("<td>"));
@@ -292,4 +285,4 @@ $(function() {
     open_note(notes_json[0]["title"]);
     show_notes_markdown();
     populate_notes_table();
-});
+//});

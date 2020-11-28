@@ -1,10 +1,37 @@
-ipcRenderer.on('open_file', function(event, json) {
-    let project_name = json["project_name"];
-    $("#project_name").text(project_name);
-    $("head title").text(project_name);
+ipcRenderer.on('open_json', (event, json) => {
+    if (!("notes" in json)) {
+        json["notes"] = [];
+    }
+    if (!("project_name"in json)) {
+        json["project_name"] = "New Project";
+    }
+
+
+    set_project_name(json["project_name"]);
+    set_notes_json(json["notes"]);
 });
 
-$(function() {
+ipcRenderer.on('get_json', (event, json) => {
+    json["project_name"] = json_project_name;
+    json["notes"] = get_notes_json();
+
+    event.sender.send("json_updated", json);
+});
+
+//$(() => {
+    let json_project_name = "Session 0";
+
+    function set_project_name(new_project_name) {
+        json_project_name = new_project_name;
+        $("#project_name").val(json_project_name);
+        $("head title").text(json_project_name);
+    }
+
+    $("#project_name").on("focusout", (event) => {
+        let new_title = $(event.currentTarget).val();
+        set_project_name(new_title)
+    });
+
     Split({
         columnGutters: [{
           track: 1,
@@ -17,7 +44,7 @@ $(function() {
         rowMinSizes: { 1: 300, 3: 45 },
         columnMinSize: 230,
     });
-});
+//});
 
 class InitiativeRecords {
     constructor() {
@@ -150,7 +177,7 @@ class InitiativeRecords {
     }
 }
 
-$(function() {
+//$(() => {
     //=======================================
     // Initiative Tracker
     //=======================================
@@ -200,7 +227,7 @@ $(function() {
         return $new_row
     }
 
-    $("#create_initiative_record").on('click', function() {
+    $("#create_initiative_record").on('click', () => {
         console.log("create!");
         let name = $("#initiative_tracker .name-input").val();
         let init = $("#initiative_tracker .initiative-input").val();
@@ -226,26 +253,26 @@ $(function() {
         $("#initiative_tracker .name-input").trigger('focus');
     });
 
-    $("#delete_all_initiative_records").on('click', function() {
+    $("#delete_all_initiative_records").on('click', () => {
         initiative_records.records.length = 0;
         show_initiative_records();
     });
 
-    $("#initiative_tracker").on("click",".disable_initiative_record", function() {
+    $("#initiative_tracker").on("click",".disable_initiative_record", () => {
         let id = $(this).closest("tr").attr("data-record_id");
 
         initiative_records.disable_initiative_record(id);
         show_initiative_records();
     });
 
-    $("#initiative_tracker").on("click",".enable_initiative_record", function() {
+    $("#initiative_tracker").on("click",".enable_initiative_record", () => {
         let id = $(this).closest("tr").attr("data-record_id");
 
         initiative_records.enable_initiative_record(id);
         show_initiative_records();
     });
 
-    $("#initiative_tracker").on("click",".delete_initiative_record", function() {
+    $("#initiative_tracker").on("click",".delete_initiative_record", () => {
         let id = $(this).closest("tr").attr("data-record_id");
 
         initiative_records.remove_initiative_record(id);
@@ -277,7 +304,7 @@ $(function() {
     let time = 0;
     let paused = false;
 
-    $start_button.on("click", function() {
+    $start_button.on("click", () => {
         if (paused) {
             paused = false;
         }
@@ -296,7 +323,7 @@ $(function() {
         $next_player_button.prop("disabled", false);
     });
 
-    $stop_button.on("click", function() {
+    $stop_button.on("click", () => {
         clearInterval(timer_interval);
 
         $start_button.prop("disabled", false);
@@ -311,7 +338,7 @@ $(function() {
         show_initiative_records();
     });
 
-    $pause_button.on("click", function() {
+    $pause_button.on("click", () => {
         paused = true;
 
         $start_button.prop("disabled", false);
@@ -347,7 +374,7 @@ $(function() {
     }
 
     // History
-    $next_player_button.on("click", function() {
+    $next_player_button.on("click", () => {
         let record = initiative_records.get_selected_record();
         initiative_records.select_next_enabled_record();
         show_initiative_records();
@@ -377,4 +404,6 @@ $(function() {
         turn_count[id]++;
         return turn_count[id];
     }
-});
+
+    $("#initiative_tracker .name-input").trigger('focus');
+//});

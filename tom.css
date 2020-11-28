@@ -42,15 +42,27 @@ h2 {
 header {
     background-color: #f5f5f5;
     margin: 0;
-    padding: 8px 8px 2px 8px;
+    padding: 2px 8px;
     border-color: #4c3f06;
     border-bottom: 2px solid;
     grid-area: header;
 }
 
-header h1 {
-    margin: 0;
+#project_name {
+    margin: 2px;
+    height: calc(100% - 4px);
+    color: #651e13;
     display: inline-block;
+    font-size: 2em;
+    font-weight: bold;
+    padding: 0;
+    background-color: #ffffff00;
+    border: 1px solid #ffffff00;
+}
+
+header #project_name:hover {
+    border: 1px solid;
+    border-radius: 3px;
 }
 
 header img {
