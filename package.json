@@ -1,6 +1,7 @@
 {
-  "name": "T.O.M",
-  "version": "0.1.0",
+  "name": "turn_order_manager",
+  "productName": "T.O.M",
+  "version": "0.2.0",
   "description": "RPG Tools",
   "main": "main.js",
   "authors": "Adam Bethell",
