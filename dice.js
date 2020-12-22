@@ -141,7 +141,6 @@ function dice_equation_parse(equation) {
     });
 
     function dice_parsed_equation_html(parsed_equation) {
-        console.log(parsed_equation);
         let $equation = $("<span>");
 
         for (let i = 0; i < parsed_equation["components"].length; i++) {0

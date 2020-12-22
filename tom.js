@@ -258,21 +258,21 @@ class InitiativeRecords {
         show_initiative_records();
     });
 
-    $("#initiative_tracker").on("click",".disable_initiative_record", () => {
+    $("#initiative_tracker").on("click",".disable_initiative_record", function() {
         let id = $(this).closest("tr").attr("data-record_id");
 
         initiative_records.disable_initiative_record(id);
         show_initiative_records();
     });
 
-    $("#initiative_tracker").on("click",".enable_initiative_record", () => {
+    $("#initiative_tracker").on("click",".enable_initiative_record", function() {
         let id = $(this).closest("tr").attr("data-record_id");
 
         initiative_records.enable_initiative_record(id);
         show_initiative_records();
     });
 
-    $("#initiative_tracker").on("click",".delete_initiative_record", () => {
+    $("#initiative_tracker").on("click",".delete_initiative_record", function() {
         let id = $(this).closest("tr").attr("data-record_id");
 
         initiative_records.remove_initiative_record(id);
